@@ -1,13 +1,12 @@
 #1
 
-SELECT COUNT(id)
+SELECT *
 FROM `students`
-WHERE `date_of_birth` < '1991-01-01' 
-AND `date_of_birth` > '1989-31-12'
+WHERE YEAR( date_of_birth ) = 1992
 
 #2
 
-SELECT COUNT(id)
+SELECT *
 FROM `courses`
 WHERE `cfu`> 10
 
@@ -32,7 +31,7 @@ AND `hour` >= '14:00:00'
 
 #6
 
-SELECT COUNT(id)
+SELECT *
 FROM `degrees`
 WHERE `level` = 'magistrale'
 

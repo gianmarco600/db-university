@@ -1,0 +1,62 @@
+#1a
+
+SELECT COUNT(`id`)
+FROM `students`
+GROUP BY `enrolment_date`
+
+#2a
+
+SELECT COUNT(`id`) 
+FROM `teachers`
+GROUP BY `office_address`
+
+#3a
+
+SELECT AVG(`vote`)
+FROM `exam_student`
+GROUP BY `exam_id`
+
+#4a
+
+SELECT COUNT(`id`)
+FROM `degrees`
+GROUP BY `department_id`
+
+------------------------------------------------------------------------------------------------
+
+#1b
+
+SELECT `students`.`id`, `degrees`.`name`
+FROM `students`
+INNER JOIN `degrees`
+ON `students`.`degree_id` = `degrees`.`id`
+WHERE `degrees`.`name` = 'Corso di Laurea in Economia'
+
+#2b
+
+SELECT `degrees`.name, `departments`.`name` AS `dep_name`
+FROM `degrees`
+INNER JOIN `departments`
+ON `degrees`.`department_id` = `departments`.`id`
+WHERE `departments`.`name` = 'Dipartimento di Neuroscienze'
+
+#3b
+
+
+SELECT `course_teacher`.`course_id` , `courses`.`name`
+FROM `course_teacher`
+INNER JOIN `courses`
+ON `course_teacher`.`course_id` = `courses`.`id`
+WHERE `teacher_id` = 1
+
+#4b
+
+SELECT `exams`.`course_id`,`courses`.`name` AS `exam_name`, `students`.`id` AS `matr_id`, COUNT(*) AS `tentativi`
+FROM `exam_student`
+JOIN `students`
+ON `exam_student`.`student_id` = `students`.`id`
+JOIN `exams`
+ON `exam_student`.`exam_id` = `exams`.`id`
+JOIN `courses`
+ON `exams`.`course_id` = `courses`.`id`
+GROUP BY `exams`.`course_id`, `students`.`id`
